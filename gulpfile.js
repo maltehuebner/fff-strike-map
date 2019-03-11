@@ -115,6 +115,7 @@ gulp.task('copy-js-external', function () {
         'node_modules/list.js/dist/list.min.js',
         'node_modules/leaflet-groupedlayercontrol/dist/leaflet.groupedlayercontrol.min.js',
         'node_modules/leaflet-hash/leaflet-hash.js',
+        'node_modules/dateformat/lib/dateformat.js',
     ])
         .pipe(gulp.dest('public/js/'));
 });
