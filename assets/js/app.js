@@ -1,6 +1,6 @@
 let map;
 let stationLayer = L.featureGroup();
-let stationList = [];
+let strikeEventList = [];
 let featureList;
 let isCollapsedif = document.body.clientWidth <= 767;
 let highlightLayer = L.geoJson(null);
@@ -11,7 +11,7 @@ let highlightStyle = {
     radius: 10
 };
 
-function loadStations() {
+function loadStrikeEvents() {
     let bounds = map.getBounds();
     let defaultStationIcon = this.createStandardStationIcon();
 
@@ -21,26 +21,27 @@ function loadStations() {
 
         },
         success: function (result) {
-            console.log(result);
             let i;
 
             for (i = 0; i < result.length; ++i) {
-                const station = result[i];
-                const stationCode = station.station_code;
+                const strikeEvent = result[i];
 
-                if (!(stationCode in stationList)) {
-                    stationList[stationCode] = station;
+                strikeEventList[i] = strikeEvent;
 
-                    const marker = L.marker([station.latitude, station.longitude], { icon: defaultStationIcon }).addTo(stationLayer);
+                if (strikeEvent.latitude && strikeEvent.longitude) {
 
-                    marker.station = station;
+                    const marker = L.marker([strikeEvent.latitude, strikeEvent.longitude], { icon: defaultStationIcon }).addTo(stationLayer);
 
-                    marker.on('click', showStationModal);
+                    marker.strikeEvent = strikeEvent;
 
-                    $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(marker) + '" lat="' + marker.getLatLng().lat + '" lng="' +marker.getLatLng().lng + '"><td class="feature-name">' + station.station_code + '</td></tr>');
+                    marker.on('click', showStrikeModal);
+
+                    $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(marker) + '" lat="' + marker.getLatLng().lat + '" lng="' +marker.getLatLng().lng + '"><td class="feature-name">' + strikeEvent.city_name + '</td></tr>');
                 }
+
+
             }
-        },
+        }
     });
 }
 
@@ -53,25 +54,20 @@ function createStandardStationIcon() {
     });
 }
 
-function showStationModal(e) {
+function showStrikeModal(e) {
     const $marker = e.target;
 
-    $.get('http://luft.ct/api/' + $marker.station.station_code, {}, function(dataList) {
-        let content = '<table class="table table-striped table-bordered table-condensed">';
+    let content = '<table class="table table-striped table-bordered table-condensed">';
+    content += '<tr><td>Treffpunkt:</td><td>' + $marker.strikeEvent.location +'</td></tr>';
+    content += '<tr><td>Datum:</td><td>' +  dateFormat($marker.strikeEvent.date_time, 'dd.mm.yyyy') + '</td></tr>';
+    content += '<tr><td>Uhrzeit:</td><td>' + dateFormat($marker.strikeEvent.date_time, 'HH:MM') + ' Uhr</td></tr>';
+    content += '</table>';
 
-        for (let i = 0; i < dataList.length; ++i) {
-            const data = dataList[i];
+    $('#feature-title').html($marker.strikeEvent.city_name);
+    $('#feature-info').html(content);
+    $('#featureModal').modal('show');
 
-            content += '<tr><td>' + data.pollutant.short_name_html +'</td><td>' + data.data.value + ' ' + data.pollutant.unit_html + '</td></tr>';
-        }
-        content += '</table>';
-
-        $('#feature-title').html($marker.station.station_code);
-        $('#feature-info').html(content);
-        $('#featureModal').modal('show');
-
-        highlightLayer.clearLayers().addLayer(L.circleMarker($marker.getLatLng(), highlightStyle));
-    });
+    highlightLayer.clearLayers().addLayer(L.circleMarker($marker.getLatLng(), highlightStyle));
 }
 
 function syncSidebar() {
@@ -82,7 +78,7 @@ function syncSidebar() {
     stationLayer.eachLayer(function (layer) {
         if (map.hasLayer(stationLayer)) {
             if (map.getBounds().contains(layer.getLatLng())) {
-                $tbody.append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td class="feature-name">' + layer.station.station_code + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
+                $tbody.append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td class="feature-name">' + layer.strikeEvent.city_name + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
             }
         }
     });
@@ -202,22 +198,19 @@ function refreshList() {
 
 createMap();
 adjustHeight();
-loadStations();
+loadStrikeEvents();
 installLocateControl();
 installZoomControl();
 
 map.on('load', function(loadEvent) {
-    loadStations();
     syncSidebar();
 });
 
 map.on('moveend', function (e) {
-    loadStations();
     syncSidebar();
 });
 
 map.on('zoomend', function (e) {
-    loadStations();
     syncSidebar();
 });
 
