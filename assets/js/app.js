@@ -45,8 +45,8 @@ function loadStrikeEvents() {
 
 function createStandardStationIcon() {
     return L.ExtraMarkers.icon({
-        icon: 'fa-thermometer',
-        markerColor: 'blue-dark',
+        icon: 'fa-users',
+        markerColor: 'green',
         shape: 'circle',
         prefix: 'fa'
     });
