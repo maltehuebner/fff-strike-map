@@ -38,8 +38,6 @@ function loadStrikeEvents() {
 
                     $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(marker) + '" lat="' + marker.getLatLng().lat + '" lng="' +marker.getLatLng().lng + '"><td class="feature-name">' + strikeEvent.city_name + '</td></tr>');
                 }
-
-
             }
         }
     });
@@ -176,7 +174,7 @@ function animateSidebar() {
 }
 
 function sidebarClick(id) {
-    const layer = markerClusters.getLayer(id);
+    const layer = stationLayer.getLayer(id);
     map.setView([layer.getLatLng().lat, layer.getLatLng().lng], 17);
 
     layer.fire('click');
