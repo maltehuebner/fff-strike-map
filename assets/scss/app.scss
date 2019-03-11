@@ -1,0 +1,27 @@
+html,
+body.map,
+#container {
+    height: 100%;
+    width: 100%;
+}
+
+body.map #container {
+    #sidebar {
+        display: block;
+        width: 250px;
+        height: 100%;
+        max-width: 100%;
+        float: left;
+        overflow-y: scroll;
+
+        .feature-row {
+            cursor: pointer;
+            width: 250px;
+        }
+    }
+
+    #map {
+        width: auto;
+        height: 100%;
+    }
+}

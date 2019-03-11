@@ -79,7 +79,7 @@ gulp.task('compress-css', ['leaflet-css', 'sass'], function () {
             'assets/css/*',
         ])
         .pipe(cleanCSS())
-        .pipe(concat('luft.min.css'))
+        .pipe(concat('fff.min.css'))
         .pipe(gulp.dest('public/css/'));
 });
 

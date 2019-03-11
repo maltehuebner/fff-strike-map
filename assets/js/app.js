@@ -16,16 +16,12 @@ function loadStations() {
     let defaultStationIcon = this.createStandardStationIcon();
 
     $.ajax({
-        url: 'http://luft.ct/api/station',
+        url: 'https://fff-strike-list.maltehuebner.de/list',
         data: {
-            north: bounds.getNorth(),
-            east: bounds.getEast(),
-            south: bounds.getSouth(),
-            west: bounds.getWest(),
-            remember_stations: true,
-            provider_identifier: 'uba_de',
+
         },
         success: function (result) {
+            console.log(result);
             let i;
 
             for (i = 0; i < result.length; ++i) {
