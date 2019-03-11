@@ -1,0 +1,43 @@
+{
+  "name": "fff-strike-map",
+  "version": "1.0.0",
+  "description": "Nice map for fff",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/maltehuebner/fff-strike-map"
+  },
+  "keywords": [],
+  "author": "Malte Hübner <maltehuebner@gmx.org>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/maltehuebner/fff-strike-map/issues"
+  },
+  "homepage": "https://github.com/maltehuebner/fff-strike-map",
+  "dependencies": {
+    "bootstrap": "^4.1.3",
+    "font-awesome": "^4.7.0",
+    "jquery": "^3.3.1",
+    "leaflet": "^1.3",
+    "leaflet-extra-markers": "^1.0.6",
+    "leaflet-groupedlayercontrol": "^0.6.1",
+    "leaflet-hash": "^0.2.1",
+    "leaflet.locatecontrol": "^0.65.1",
+    "leaflet.markercluster": "^1.4.1",
+    "list.js": "^1.5.0",
+    "popper.js": "^1.14.4",
+    "typeahead.js": "^0.11.1"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-clean-css": "^2.0.4",
+    "gulp-concat": "^2.6.1",
+    "gulp-css-replace-url": "^0.2.4",
+    "gulp-minify": "^3.1.0",
+    "gulp-sass": "^4.0.2",
+    "node-sass": "^4.9.4"
+  }
+}

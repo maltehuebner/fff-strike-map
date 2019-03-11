@@ -1,7 +1,67 @@
 <html>
 <body>
-<h1>
-    FFF Strike Map
-</h1>
+
+
+<div id="container">
+    <div id="sidebar">
+        <div class="sidebar-wrapper">
+            <div class="card" id="station-sidebar">
+                <div class="card-header">
+                    <h5 class="card-title">
+                        Stationsliste
+                        <button type="button" class="btn btn-sm btn-outline-secondary pull-right" id="sidebar-hide-btn">
+                            <i class="fa fa-chevron-left"></i>
+                        </button></h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-10">
+                            <input type="text" class="form-control form-control-sm search" placeholder="Filter" />
+                        </div>
+                        <div class="col-2">
+                            <button type="button" class="btn btn-sm btn-primary pull-right sort" data-sort="feature-name" id="sort-btn">
+                                <i class="fa fa-sort"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body p-0">
+                    <table class="table table-hover" id="feature-list">
+                        <tbody class="list"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="map"></div>
+</div>
+
+<div class="modal" tabindex="-1" role="dialog" id="featureModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="feature-title">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="feature-info">
+                <p>Modal body text goes here.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                    Schließen
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="{{ asset('/js/list.min.js') }}"></script>
+<script src="{{ asset('/js/leaflet.markercluster.js') }}"></script>
+<script src="{{ asset('/js/L.Control.Locate.min.js') }}"></script>
+<!--<script src="{{ asset('/js/leaflet-groupedlayercontrol.min.js') }}"></script>-->
+<script src="{{ asset('/js/leaflet.extra-markers.min.js') }}"></script>
+<script src="{{ asset('/js/leaflet-hash.js') }}"></script>
+<script src="{{ asset('/js/app.min.js') }}"></script>
 </body>
 </html>
