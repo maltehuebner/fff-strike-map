@@ -89,7 +89,7 @@ function createMap() {
         zoom: 10,
         layers: [stationLayer, highlightLayer],
         zoomControl: false,
-        attributionControl: false,
+        attributionControl: true,
         maxZoom: 18,
     });
 
