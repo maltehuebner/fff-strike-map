@@ -21,9 +21,22 @@
                             Events / Graph <span class="sr-only">(current)</span>
                         </a>
                     </li>
+
                     <li class="nav-item">
                         <a class="nav-link text-white" href="https://www.fridaysforfuture.org/events/list">
                             Events / List
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="#" data-toggle="modal" data-target="#privacy-modal">
+                            Datenschutz
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="#" data-toggle="modal" data-target="#impress-modal">
+                            Impressum
                         </a>
                     </li>
                 </ul>
@@ -84,6 +97,43 @@
                 </div>
             </div>
         </div>
+
+        <div class="modal fade" id="impress-modal" tabindex="-1" role="dialog" aria-labelledby="impress-modal-label" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="impress-modal-label">
+                            Impressum
+                        </h5>
+
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>
+                            Diese Karte bietet eine Übersicht über Fridays-For-Future-Demonstrationen am 15. März in Deutschland. Die Daten stammen von <a href="https://www.fridaysforfuture.org/">fridaysforfuture.org</a>, <a href="https://www.fridaysforfuture.de/">fridaysforfuture.de</a>, die Geodaten teilweise von <a href="https://nominatim.openstreetmap.org/">Nominatim</a>.
+                        </p>
+
+                        <p>
+                            Verantwortlich nach § 5 TMG:
+                        </p>
+                        
+                        <p>
+                            Malte Hübner<br />Niebuhrstraße 48<br />24118 Kiel
+                        </p>
+
+                        <p>
+                            Telefon: 0700 11 864 733<br />E-Mail: <a href="mailto:malte@caldera.cc">malte@caldera.cc</a>
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <script src="/js/jquery.min.js"></script>
         <script src="/js/bootstrap.min.js"></script>
         <script src="/js/leaflet.js"></script>
