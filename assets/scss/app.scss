@@ -25,3 +25,7 @@ body.map #container {
         height: 100%;
     }
 }
+
+.list-unstyled a {
+    word-break: break-all;
+}

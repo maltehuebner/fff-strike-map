@@ -59,6 +59,17 @@ function showStrikeModal(e) {
     content += '<tr><td>Treffpunkt:</td><td>' + $marker.strikeEvent.location +'</td></tr>';
     content += '<tr><td>Datum:</td><td>' +  dateFormat($marker.strikeEvent.date_time, 'dd.mm.yyyy') + '</td></tr>';
     content += '<tr><td>Uhrzeit:</td><td>' + dateFormat($marker.strikeEvent.date_time, 'HH:MM') + ' Uhr</td></tr>';
+
+    if ($marker.strikeEvent.links) {
+        content += '<tr><td>Links:</td><td><ul class="list-unstyled">';
+
+        for (let i in $marker.strikeEvent.links) {
+            content += '<li><a href="' + $marker.strikeEvent.links[i].url + '" target="_blank">' + $marker.strikeEvent.links[i].url + '</a>';
+        }
+
+        content += '</ul></td></tr>';
+    }
+
     content += '</table>';
 
     $('#feature-title').html($marker.strikeEvent.city_name);
