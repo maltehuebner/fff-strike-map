@@ -60,7 +60,7 @@ function showStrikeModal(e) {
     content += '<tr><td>Datum:</td><td>' +  dateFormat($marker.strikeEvent.date_time, 'dd.mm.yyyy') + '</td></tr>';
     content += '<tr><td>Uhrzeit:</td><td>' + dateFormat($marker.strikeEvent.date_time, 'HH:MM') + ' Uhr</td></tr>';
 
-    if ($marker.strikeEvent.links) {
+    if ($marker.strikeEvent.links && Array.isArray($marker.strikeEvent.links) && $marker.strikeEvent.links.length > 0) {
         content += '<tr><td>Links:</td><td><ul class="list-unstyled">';
 
         for (let i in $marker.strikeEvent.links) {
