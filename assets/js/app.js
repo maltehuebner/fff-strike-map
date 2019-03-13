@@ -2,7 +2,6 @@ let map;
 let stationLayer = L.featureGroup();
 let strikeEventList = [];
 let featureList;
-let isCollapsedif = document.body.clientWidth <= 767;
 let highlightLayer = L.geoJson(null);
 let highlightStyle = {
     stroke: false,
@@ -171,7 +170,7 @@ $('#nav-btn').click(function() {
     return false;
 });
 
-$('#sidebar-hide-btn').click(function() {
+$('.toggle-sidebar').click(function() {
     animateSidebar();
     return false;
 });
@@ -205,11 +204,21 @@ function refreshList() {
     });
 }
 
+function setupSidebar() {
+    let collapseSidebar = document.body.clientWidth <= 767;
+
+    if (collapseSidebar) {
+        let $sidebar = $('#sidebar');
+        $sidebar.hide();
+    }
+}
+
 createMap();
 adjustHeight();
 loadStrikeEvents();
 installLocateControl();
 installZoomControl();
+setupSidebar();
 
 map.on('load', function(loadEvent) {
     syncSidebar();
